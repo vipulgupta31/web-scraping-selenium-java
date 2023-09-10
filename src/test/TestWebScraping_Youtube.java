@@ -36,7 +36,7 @@ public class TestWebScraping_Youtube extends BaseTest {
 		do {
 			startHeight = scrollHeight;
 			js.executeScript("window.scrollTo(0, "+ startHeight + ")");
-			Thread.sleep(3000);
+			Thread.sleep(1000);
 			scrollHeight = (long) js.executeScript("return document.documentElement.scrollHeight"); 
 		}while(startHeight != scrollHeight);
 		
