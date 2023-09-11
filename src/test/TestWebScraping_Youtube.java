@@ -25,7 +25,21 @@ public class TestWebScraping_Youtube extends BaseTest {
 		//wait for the Lambdatest youtube page to load
 		driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
 		
-		
+		//Click "Accept All" for YouTube cookie consent.
+		//This window might come up in cloud execution as cookies gets cleaned.
+		//Reference : https://github.com/hjsblogger/web-scraping-with-python#web-scraping-using-selenium-cloud-grid-and-python
+		try {
+			//wait to check if "Accept All" is present to be clicked.
+			wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//button[@aria-label='Accept all']"))));
+			
+			//Click on "Accept All" button
+			driver.findElement(By.xpath("//button[@aria-label='Accept all']")).click();
+		}
+		catch(Exception e)
+		{
+			//Exception means the button is not availble and YouTube channel link has opened successfully
+            		//Continue test execution
+		}
 		
 		//scroll to the end of the page to load all the videos
 		JavascriptExecutor js = (JavascriptExecutor) driver;
